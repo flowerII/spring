@@ -1,0 +1,98 @@
+@font-face {
+  font-family: typicons;
+  src: url("../font/typicons.ttf");
+}
+* {
+  padding: 0px;
+  margin: 0px auto;
+}
+html {
+  height: 100%;
+}
+html body {
+  height: 100%;
+}
+html body .navbar-default {
+  background-color: #f9f6f1;
+}
+html body .navbar-default #admin {
+  display: none;
+}
+html body .con-body {
+  margin-top: 70px;
+}
+html body .con-body .left {
+  position: relative;
+}
+html body .con-body .left .news .more,
+html body .con-body .left .activities .more {
+  position: absolute;
+  right: 30px;
+}
+html body .con-body .left .news li a,
+html body .con-body .left .activities li a {
+  text-decoration: none;
+  color: #666666;
+}
+html body .con-body .left .news li:hover a,
+html body .con-body .left .activities li:hover a {
+  color: #000000;
+}
+html body .con-body .left .news li:hover a:before,
+html body .con-body .left .activities li:hover a:before {
+  font-family: typicons;
+  font-size: 14px;
+  padding-right: 3px;
+  content: '\e049';
+}
+html body .con-body .right .swiper-container {
+  border: 1px solid #dddddd;
+}
+html body .con-body .right .swiper-container .swiper-wrapper {
+  height: 100%;
+  width: 100%;
+  max-height: 400px;
+  margin: auto;
+}
+html body .con-body .right .swiper-container .swiper-wrapper .swiper-slide {
+  line-height: 400px;
+  font-size: 36px;
+  text-align: center;
+}
+html body .con-body .right .swiper-container .swiper-wrapper .swiper-slide img {
+  max-width: 100%;
+  max-height: 400px;
+}
+html body .con-body .right .pagination {
+  position: absolute;
+  z-index: 20;
+  bottom: 10px;
+  width: 100%;
+  text-align: center;
+}
+html body .con-body .right .swiper-pagination-switch {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 8px;
+  background: #555;
+  margin: 0 5px;
+  opacity: 0.8;
+  border: 1px solid #fff;
+  cursor: pointer;
+}
+html body .con-body .right .swiper-active-switch {
+  background: blue;
+}
+html body .con-body .right .recommend {
+  margin-bottom: 0px;
+  font-weight: 600;
+  padding-top: 30px;
+  text-align: center;
+}
+html body .footer {
+  text-align: center;
+  padding: 10px;
+  font-size: 12px;
+}
+/*# sourceMappingURL=index.css.map */

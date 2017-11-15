@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!-- user -->
+    <bean id="userDao" class="com.wenxuezhan.qianshu.dao.UserDao">
+         <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>  
+    <bean id="userService" class="com.wenxuezhan.qianshu.service.UserService">
+        <property name="userDao" ref="userDao"></property>
+    </bean>    
+    <bean id="userAction" class="com.wenxuezhan.qianshu.action.UserAction" scope="prototype">
+        <property name="userService" ref="userService"></property>
+    </bean>  
+     
+    <bean id="emailAction" class="com.wenxuezhan.qianshu.action.EmailAction" scope="prototype"></bean>
+    <bean id="uploadAction" class="com.wenxuezhan.qianshu.action.UploadAction" scope="prototype"></bean>
+    <bean id="articleDisplayAction" class="com.wenxuezhan.qianshu.action.ArticleDisplayAction" scope="prototype"></bean>
+    
+    <!-- up article -->
+    <bean id="uploadArticleAction" class="com.wenxuezhan.qianshu.action.UploadArticleAction" scope="prototype">
+    	<property name="userService" ref="userService"></property>
+    	<property name="articleService" ref="articleService"></property>
+    </bean>
+     
+    <!-- activity -->
+    <bean id="activityDao" class="com.wenxuezhan.qianshu.dao.ActivityDao">
+         <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>  
+    <bean id="activityService" class="com.wenxuezhan.qianshu.service.ActivityService">
+        <property name="activityDao" ref="activityDao"></property>
+    </bean>    
+    <bean id="activityAction" class="com.wenxuezhan.qianshu.action.ActivityAction" scope="prototype">
+        <property name="activityService" ref="activityService"></property>
+        <property name="userService" ref="userService"></property>
+    </bean>  
+    
+    <!-- news -->
+    <bean id="newsDao" class="com.wenxuezhan.qianshu.dao.NewsDao">
+         <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>  
+    <bean id="newsService" class="com.wenxuezhan.qianshu.service.NewsService">
+        <property name="newsDao" ref="newsDao"></property>
+    </bean>    
+    <bean id="newsAction" class="com.wenxuezhan.qianshu.action.NewsAction" scope="prototype">
+        <property name="newsService" ref="newsService"></property>
+        <property name="userService" ref="userService"></property>
+    </bean> 
+    
+    <!-- article -->
+    <bean id="articleDao" class="com.wenxuezhan.qianshu.dao.ArticleDao">
+         <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>  
+    <bean id="articleService" class="com.wenxuezhan.qianshu.service.ArticleService">
+        <property name="articleDao" ref="articleDao"></property>
+    </bean>   
+    <bean id="articleAction" class="com.wenxuezhan.qianshu.action.ArticleAction" scope="prototype">
+        <property name="articleService" ref="articleService"></property>
+    </bean>  
+    
+    <!-- lanjieqi -->
+    <bean id="authenticatedInterceptor" class="com.wenxuezhan.qianshu.interceptor.AuthenticatedInterceptor">
+    </bean>
+</beans>

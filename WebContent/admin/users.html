@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>后台管理</title>
+		<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" />
+		<style type="text/css">
+			*{
+				margin: 0px;
+				padding: 0px;
+			}
+			.table,th{
+				text-align: center;
+			}
+		</style>
+		<script src="../js/jquery-2.1.4.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/plugs.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function(){
+				//获取用户列表
+				$._ajax({
+					url: "user_getall",
+					async: false
+				}).done(function(data){
+					list = data.list
+					if(list.length != 0){
+						var $html = "";
+						list.forEach(function(user,i){
+							$html = '<tr>'+
+											'<td>'+user.user_id+'</td>'+
+											'<td>'+user.user_account+'</td>'+
+											'<td>'+user.user_name+'</td>'+
+											'<td>'+
+												'<select>'+
+													'<option value="0">普通读者</option>'+
+													'<option value="1">编辑</option>'+
+												'</select>'+
+											'</td>'+
+										'</tr>';
+							$(".table").append($html);
+							$(".table").find('tr').eq(i+1).find("select").val(user.user_role);
+							});
+							
+					}
+				});
+				
+				
+				//修改权限
+				$("select").change(function(){
+					var $id = $(this).parent().parent().find("td").eq(0);
+					if(confirm("你确定要修改用户权限吗？")){
+						$._ajax({
+							url: "user_alterRole",
+							data: {
+								user_id : $id.text(),
+								user_role : $(this).val()
+							}
+						}).done(function(data){
+							if(data.success){
+								alert("权限修改成功");
+							}
+							else{
+								alert("您没有此权限！！");
+							}
+						});
+					}
+				});
+			})
+		</script>
+	</head>
+
+	<body>
+		<div class="">
+			<!-- Default panel contents -->
+			<div class="panel-body">
+				<p>注意，编辑有进入后台管理的权限，但无删除稿件的权限</p>
+			</div>
+			<!-- Table -->
+			<table class="table">
+				<tr>
+					<th>id</th>
+					<th>账号</th>
+					<th>用户名</th>
+					<th>权限</th>
+				</tr>
+			</table>
+		</div>
+
+	</body>
+
+</html>

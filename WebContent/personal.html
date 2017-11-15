@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+		<title>个人中心</title>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+		<style type="text/css">
+			.con-body {
+				margin-top: 70px;
+			}
+		</style>
+		<script src="js/jquery-2.1.4.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/plugs.js" type="text/javascript " charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function(){
+				
+				//获取信息
+				$._ajax({
+					url : "user_getInfo"
+				}).done(function(data){
+					//var back = JSON.parse(back);
+					console.log(data)
+					var user=data.user
+					$("#userName").val(user.user_name);
+					$("#sno").val(user.user_sno);
+					$("#description").val(user.user_description);
+				})
+				
+				//修改信息
+				$("#submit").click(function(){
+					$._ajax({
+						url : "user_alterInfo",
+						data :{
+							user_name: $("#userName").val(),
+							user_sno: $("#sno").val(),
+							user_description: $("#description").val(),
+						}
+					}).done(function(data){
+						if(data.success){
+							alert(data.message);
+						}else{
+							alert("修改失败，请稍后再试");
+						}
+					})
+					return false;
+				})
+			})
+		</script>
+	</head>
+
+	<body>
+		<!--nav start-->
+		<iframe src="title.html" width="100%" height="52px" style="border: none;"></iframe>
+		<!--nav end-->
+		<!--body start-->
+		<div class="container con-body">
+			<div class="row">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<div class="panel-title"><b>个人中心</b>
+						</div>
+
+						<div class="panel-options">
+							<a class="bg" data-target="#sample-modal-dialog-1" data-toggle="modal" href="#sample-modal"><i class="entypo-cog"></i></a>
+							<a data-rel="collapse" href="#"><i class="entypo-down-open"></i></a>
+							<a data-rel="close" href="#!/tasks" ui-sref="Tasks"><i class="entypo-cancel"></i></a>
+						</div>
+					</div>
+
+					<div class="panel-body">
+						<form novalidate="" role="form" class="form-horizontal">
+							<div class="form-group">
+								<label class="col-md-2 control-label">用户名/笔名*</label>
+								<div class="col-md-10">
+									<input type="text" required="" placeholder="用户名/笔名" id="userName" class="form-control" name="userName">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-2 control-label">学号</label>
+								<div class="col-md-10">
+									<input type="text" placeholder="学号" id="sno" class="form-control" name="sno">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-2 control-label" for="description">个人说明</label>
+								<div class="col-md-10">
+									<textarea class="form-control" placeholder="个人说明" rows="5" cols="20" id="description" name="description"></textarea>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-md-offset-2 col-md-10">
+									<button class="btn btn-info" id="submit" type="submit">提交</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--body end-->
+	</body>
+
+</html>

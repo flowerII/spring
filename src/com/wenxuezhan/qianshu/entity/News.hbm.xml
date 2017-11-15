@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-10-7 23:27:29 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.wenxuezhan.qianshu.entity.News" table="NEWS">
+        <id name="new_id" type="int">
+            <generator class="native" />
+        </id>
+        <property name="user_id"  type="int"/>
+        <property name="new_time"></property>
+        <property name="new_name"></property>
+        <property name="new_content"></property>
+    </class>
+</hibernate-mapping>

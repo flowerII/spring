@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-10-7 23:27:29 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.wenxuezhan.qianshu.entity.Article" table="ARTICLE">
+        <id name="article_id" type="int">
+            <generator class="native" />
+        </id>
+        <property name="user_id" type="int"/>
+        <property name="user_name"></property>
+        <property name="activity_id" type="int"></property>
+        <property name="article_name"></property>
+        <property name="article_url"></property>
+        <property name="article_prize" type="int">
+        	<column name="article_prize" default="0"></column>
+        </property>
+    </class>
+</hibernate-mapping>

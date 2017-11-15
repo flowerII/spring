@@ -1,0 +1,58 @@
+* {
+  padding: 0px;
+  margin: 0px auto;
+}
+html {
+  height: 100%;
+}
+body {
+  height: 100%;
+  background: url(../img/login-bg.jpg) no-repeat;
+  background-size: 100% 100%;
+}
+body .box {
+  position: relative;
+  top: 50%;
+}
+body .box-body > .row {
+  margin-bottom: 10px;
+  margin-top: 10px;
+  font-size: 20px;
+}
+body .box-bottom {
+  margin-top: 30px;
+}
+body .box-bottom > .row > div {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+body .box-bottom > .row > div a {
+  width: 100%;
+  min-width: 32px;
+  display: block;
+}
+h2 {
+  text-align: center;
+  font-family: "楷体";
+  line-break: 36px;
+}
+form {
+  display: block;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  border-top: 3px solid #666666;
+  padding: 20px 0px;
+}
+input {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  width: 100%;
+  line-height: 36px;
+  height: 36px;
+  border: 1px solid #666666;
+  padding-left: 5px;
+}
+/*# sourceMappingURL=login.css.map */

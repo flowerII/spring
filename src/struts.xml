@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" 
+"http://struts.apache.org/dtds/struts-2.0.dtd" >
+<struts>
+	<constant value="false" name="struts.enable.DynamicMethodInvocation"/>
+	<constant name="struts.multipart.saveDir" value="/tmp"/>
+	<constant name="struts.i18n.encoding" value="utf-8"></constant>
+     <!--配置为开发模式，一旦文件改动，不需要重启，会立即生效 -->
+    <constant name="struts.devMode" value="true" />
+     <!--把主题配置为simple -->
+    <constant name="struts.ui.theme" value="simple" />
+	
+	<include file="struts-default.xml"></include>
+	<constant name="struts.action.excludePattern" value="/css/.*?,/font/.*?,/fonts/.*?,/img/.*?,/js/.*?" />
+
+	<package name="mypackage" extends="json-default,struts-default" namespace="/">  
+		<interceptors>
+    		<!-- 自定义拦截器 -->
+    		<interceptor name="authenticated" class="authenticatedInterceptor">
+    			<param name="excludeMethods">login,registry,get_Code,get_home_5,logout,not_publish,content,text</param>
+    		</interceptor>
+    		<interceptor-stack name="defaultInterceptorStack">
+				<interceptor-ref name="authenticated"></interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+    	</interceptors>   	
+    	<default-interceptor-ref name="defaultInterceptorStack"></default-interceptor-ref>
+    	
+    	<!-- global result -->
+    	<global-results>
+    		<result name="login">/login.html</result>
+    	</global-results>
+    	
+		<!-- user -->
+        <action name="user_*" class="userAction" method="{1}">  
+            <result type="json">  
+                <param name="root">dataMap</param>    
+            </result>  
+        </action>
+        
+        <!-- activity -->
+        <action name="activity_*" class="activityAction" method="{1}">  
+            <result type="json">  
+                <param name="root">dataMap</param>    
+            </result>  
+             <result name="input">/admin/activitycontent.jsp</result>
+        </action>
+        
+        <!-- news -->
+        <action name="news_*" class="newsAction" method="{1}">  
+            <result type="json">  
+                <param name="root">dataMap</param>    
+            </result>  
+            <result name="input">/admin/newscontent.jsp</result>
+        </action>
+        
+         <!-- article -->
+        <action name="article_*" class="articleAction" method="{1}">  
+            <result type="json">  
+                <param name="root">dataMap</param>    
+            </result>  
+            <result  name="articleList">/admin/articleList2.jsp</result>
+            <result  name="content">/admin/content2.jsp</result>
+        </action>
+        
+        <!-- article upload -->
+        <action name="add_article" class="uploadArticleAction" method="add_article">  
+            <result name="success">/success.html</result>  
+        </action>
+        
+        <!-- email -->
+        <action name="get_Code" class="emailAction" method="get_Code">  
+            <result type="json">  
+                <param name="root">dataMap</param>    
+            </result>  
+        </action>
+        
+        <!-- dispaly -->
+        <action name="display" class="articleDisplayAction" method="display">  
+            <result type="json">  
+                <param name="root">dataMap</param>    
+            </result>  
+        </action>
+        
+        <!-- upload -->
+        <action name="upload" class="uploadAction" method="up_picture">  
+            <result type="json">  
+                <param name="root">dataMap</param>    
+            </result>  
+        </action>
+        
+    </package>
+</struts>

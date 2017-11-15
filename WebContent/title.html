@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+		<title>title</title>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+		<style type="text/css">
+			html{
+				overflow-y: hidden;
+			}
+			#admin{
+				display:none;
+			}
+		</style>
+		<script src="js/jquery-2.1.4.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/plugs.js" type="text/javascript " charset="utf-8"></script>
+		<script src="js/title.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function(){
+				$(top.document).find('iframe').eq(0).addClass("navbar-fixed-top");
+				var timer;
+				var run = function(){
+					$("html").clearQueue().queue(function(){
+						timer = setInterval(function(){
+							$(top.document).find('iframe').eq(0).height($('body').height());
+						},8);
+						$(this).dequeue();
+					}).delay(1000).queue(function(){
+						clearInterval(timer);
+						$(this).dequeue();
+					});
+				}
+				
+				$(".navbar-toggle").on('click',run);
+				
+				
+				$("#personal").click(function(){
+					if(!sessionStorage.userName){
+						alert("请先登录");
+						return false;
+					}
+					top.location.href='personal.html';
+				});
+			})
+		</script>
+	</head>
+	<body>
+		<!--nav start-->
+		<nav class="navbar navbar-default navbar-static-top">
+	      <div class="container">
+	        <div class="navbar-header">
+	          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false " aria-controls="navbar">
+	            <span class="sr-only ">Toggle navigation</span>
+	            <span class="icon-bar "></span>
+	            <span class="icon-bar "></span>
+	            <span class="icon-bar "></span>
+	          </button>
+	          <a class="navbar-brand" id="user" href="#">游客</a>
+	        </div>
+	        <div id="navbar" class="navbar-collapse collapse" aria-expanded="false" style="height: 1px;">
+	          <ul class="nav navbar-nav">
+	            <li id="login-about"><a href="javascript:;" onclick="top.location.href='login.html';">登录</a></li>
+	            <li><a href="javascript:;" onclick="top.location.href='register.html'">注册</a></li>
+	            <li><a href="javascript:;" onclick="top.location.href='index.html'">首页</a></li>
+	          </ul>
+	          <ul class="nav navbar-nav navbar-right">
+	            <li><a href="javascript:;" id="personal">个人中心</a></li>
+	            <li><a href="javascript:;" onclick="top.location.href='userPrize.html'">获奖作品</a></li>
+	            <li><a href="javascript:;" onclick="top.location.href='articles.html'">在线投稿</a></li>
+	            <li id="admin"><a href="javascript:;" onclick="top.location.href='admin/admin.html'">后台管理</a></li>
+	          </ul>
+	        </div>
+	      </div>
+	    </nav>
+	    <!--nav end-->
+	</body>
+</html>

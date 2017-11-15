@@ -1,0 +1,60 @@
+* {
+  padding: 0;
+  margin: 0 auto;
+}
+html {
+  height: 100%;
+}
+html body {
+  height: 100%;
+  background: url(../img/login-bg.jpg) no-repeat;
+  background-size: 100% 100%;
+}
+html body .box {
+  position: relative;
+  top: 25%;
+}
+html body .box form h2 {
+  text-align: center;
+  border-bottom: 3px solid #666666;
+  font-family: "楷体";
+  line-height: 40px;
+  height: 40px;
+}
+html body .box form ul {
+  text-decoration: none;
+  list-style: none;
+  width: 100%;
+  margin-top: 20px;
+}
+html body .box form ul li {
+  overflow: hidden;
+  padding: 5px 0px;
+}
+html body .box form ul li label {
+  line-height: 36px;
+  float: left;
+  text-align: right;
+  display: block;
+  width: 75px;
+  height: 36px;
+  font-weight: 100;
+}
+html body .box form ul li div {
+  margin-left: 75px;
+  height: 36px;
+}
+html body .box form ul li div input {
+  padding-left: 5px;
+  line-height: 36px;
+  height: 36px;
+  width: 100%;
+  display: block;
+  border: 1px solid #666666;
+}
+html body .box form .box-bottom a {
+  width: 100%;
+  min-width: 32px;
+  display: block;
+}
+/*# sourceMappingURL=register.css.map */

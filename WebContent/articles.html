@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+		<title>投稿页</title>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+		<style type="text/css">
+			.box {
+				margin-top: 70px; 
+			}
+		</style>
+		<script src="js/jquery-2.1.4.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/plugs.js" type="text/javascript " charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function() {
+				//获取活动列表
+ 				$._ajax({
+					url : "activity_not_publish"
+				}).done(function(data){
+					console.log(data)
+					list = data.activities;
+					var html = '<option value="">请选择投稿活动</option>';
+					if(list.length!=0){
+						list.forEach(function(activity){
+							html += '<option value="'+activity.activity_id+'">'+activity.activity_name+'</option>';
+						})
+					}
+					$("#activities").append(html);
+				}); 
+				
+				
+				//判断文件类型
+				$("#exampleInputFile").change(function() {
+					var file = $("#exampleInputFile").get(0).files[0];
+					if(!file) return;
+					var type = file.name.split('.')[1];
+					if(type != "txt" && type != "doc" && type != "docx") {
+						alert("文件类型不正确，请重新选择");
+						$(this).val("");
+					}
+				});
+
+			})
+		</script>
+	</head>
+
+	<body>
+		<iframe src="title.html" width="100%" height="52px" style="border: none;"></iframe>
+		<div class="container box">
+			<div class="row">
+				<div class="col-sm-8 col-sm-push-2">
+					<div class="panel panel-info">
+						<div class="panel-heading">
+							<p>活动投稿</p>
+						</div>
+						<div class="panel-body">
+							<form action="add_article" method="post" accept-charset="UTF-8" enctype="multipart/form-data" role="form" class="form-horizontal">
+								<div class="form-group">
+									<label class="col-md-2 control-label">文章标题</label>
+									<div class="col-md-10">
+										<input type="text" required="" placeholder="Title" id="title" class="form-control" name="title">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-md-2 control-label">活动选择</label>
+									<div class="col-md-10">
+										<select id="activities" class="form-control" name="activity_id">
+										</select>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-md-2 control-label">上传稿件</label>
+									<div class="col-md-10">
+										<input type="file" id="exampleInputFile" name="image">
+										<p class="help-block">请选择txt/doc/docx文件</p>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="col-md-offset-2 col-md-10">
+										<button class="btn btn-info" type="submit" id="submit">提交</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+
+</html>

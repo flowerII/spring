@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-10-7 23:27:29 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.wenxuezhan.qianshu.entity.User" table="USER">
+        <id name="user_id" type="int">
+            <generator class="native" />
+        </id>
+        <property name="user_account">
+        </property>
+        <property name="user_password">
+        </property>
+        <property name="user_name">
+        </property>
+        <property name="user_description">
+        </property>
+        <property name="user_role" type="int">
+        	<column name="user_role" default="0"></column>
+        </property>
+        <property name="user_sno" type="int">
+        </property>
+    </class>
+</hibernate-mapping>

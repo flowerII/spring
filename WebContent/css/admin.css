@@ -1,0 +1,34 @@
+@font-face {
+  font-family: 'typicons';
+  src: url("../font/typicons.ttf");
+}
+* {
+  padding: 0px;
+  margin: 0px auto;
+}
+html {
+  height: 100%;
+}
+html body {
+  height: 100%;
+}
+html body .box {
+  margin-top: 70px;
+}
+html body .box .nav-side li a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  color: #666666;
+}
+html body .box .nav-side li a:hover {
+  color: #000000;
+}
+html body .box .nav-side li a:hover:before {
+  font-family: typicons;
+  font-size: 14px;
+  padding-right: 3px;
+  content: '\e049';
+}
+/*# sourceMappingURL=admin.css.map */

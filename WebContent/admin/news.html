@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>公告管理</title>
+		<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" />
+		<style type="text/css">
+			@font-face {
+				font-family: typicons;
+				src: url("../font/typicons.ttf");
+			}
+			.chevron-right:after{
+				padding-right: 10px;
+				font-family: typicons;
+                content: '\e049';
+			}
+			li{
+				position: relative;
+				min-height: 50px;
+				line-height: 30px;
+			}
+			.delete{
+				height: 30px;
+			}
+			.right{
+				position: absolute;
+				right: 10px;			
+			}
+			.list-group,.list-group-item{
+				border-radius: 0px !important;
+			}
+		</style>
+		<script src="../js/jquery-2.1.4.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/plugs.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function() {			
+				//获取相关活动
+				$._ajax({
+					url: "news_get_all",
+					async:false
+				}).done(function(data) {
+					news = data.newslist;
+					console.log(news)
+					var $html = "";						
+					$(".box").html(" ");
+					if(news.length!= 0){
+						news.forEach(function(value,i){
+							$html = '<li class="list-group-item" id="'+value.new_id+'">'+value.new_name+'<button class="btn btn-danger right delete">删除</button></li>';
+							$(".box").append($html);
+						});
+					}
+					
+				});
+				
+				//删除活动
+				$("li").on('click','.delete',function() {
+					var $new_id = $(this).parent().attr("id");
+					$._ajax({
+						url: "news_delete",
+						data: {
+							new_id: $new_id
+						}
+					}).done(function(data) {
+						if(data.success){
+							alert("删除成功");
+							location.reload(true);
+						}
+					});
+
+				});
+
+			})
+		</script>
+	</head>
+
+	<body>
+		<ul class="list-group panel box">
+			<!--<li class="list-group-item" id="activity.activity_id">name<button class="btn btn-danger right delete">删除</button></li>-->
+		</ul>
+	</body>
+
+</html>
